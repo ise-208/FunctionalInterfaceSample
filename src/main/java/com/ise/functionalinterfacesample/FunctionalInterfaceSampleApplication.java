@@ -25,6 +25,7 @@ public class FunctionalInterfaceSampleApplication {
 		public void run(String... args) throws Exception {
 
 //			supplier
+//			イメージは錬金術
 			Supplier<String> supplier = () -> "supplier";
 			System.out.println(supplier.get());
 			List<String> list = Arrays.asList("s","u","p");
@@ -36,12 +37,20 @@ public class FunctionalInterfaceSampleApplication {
 			logger.info(() -> "list=" + list);
 
 //			consumer
-			Consumer<String> consumer = c -> System.out.println(c);
+//			1 -> 0の関数
+//			イメージは起爆剤
+			Consumer<String> consumer = (c) -> System.out.println(c);
 			consumer.accept("consumer");
-			Consumer<String> c1 = s -> System.out.println("c1: " + s);
-			Consumer<String> c2 = s -> System.out.println("c2: " +s);
+			Consumer<String> c1 = (s) -> System.out.println("c1: " + s);
+			Consumer<String> c2 = (s) -> System.out.println("c2: " +s);
 			Consumer<String> c = c1.andThen(c2);
 			c.accept("abc");
+
+//			supplier + consumer
+			Supplier<String> supplier1 = () -> "sc";
+			Consumer<String> consumer1 = (cs) -> System.out.println(cs);
+
+			consumer1.accept(supplier1.get());
 
 
 		}

@@ -7,6 +7,8 @@ import org.springframework.stereotype.Component;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Optional;
+import java.util.Random;
 import java.util.function.Consumer;
 import java.util.function.Supplier;
 import java.util.logging.Level;
@@ -52,7 +54,18 @@ public class FunctionalInterfaceSampleApplication {
 
 			consumer1.accept(supplier1.get());
 
+			boolean b = new Random().nextBoolean();
+			String checkNull = null;
+			if (b) {
+				checkNull = "notNull";
+			}
+			if (checkNull != null) {
+				System.out.println(checkNull);
+			}
 
+			Optional<String> optionalNull = Optional.empty();
+			optionalNull.orElse("notNull");
+			System.out.println(optionalNull);
 		}
 
 	}
